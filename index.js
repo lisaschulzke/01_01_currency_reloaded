@@ -19,7 +19,7 @@
  *  npm start -- 10.0 USD EUR
  * 
  *  Die erwartete Ausgabe ist ein Text in folgender Form:
- *  "Ergebnis: <Ausgangssumme> <Ausgangswährung> = <Ergebnis> <Zielwährung>"
+ *  'Ergebnis: <Ausgangssumme> <Ausgangswährung> = <Ergebnis> <Zielwährung>'
  *  also z.B.
  *  Ergebnis: 10.00 USD = 11.00 EUR
  *  
@@ -31,9 +31,25 @@ let args = process.argv.slice(2);
 let amount, originalCurrency, targetCurrency;
 
 if (args.length < 3) {
-  console.log('Error: Not enough input arguments given!');
+  console.log();
 } else {
   amount = args[0];
   originalCurrency = args[1];
   targetCurrency = args[2];
 }
+
+// Variablen definieren Umrechnungsfaktor
+const EUR = 1
+const USD = 1.11
+let calculation;
+
+if (originalCurrency === 'USD' && targetCurrency === 'EUR') {
+  calculation = amount * USD * EUR
+  console.log(amount + ' ist in USD ' + calculation)
+} else if (originalCurrency === 'EUR' && targetCurrency === 'USD') {
+  calculation = amount / USD * EUR
+  console.log(amount + ' ist in EUR ' + calculation)
+}
+
+//TODO: Code schreiben, dass er ausgeführt wird; Vorgehen: Comment-Coding
+//TODO: je nachdem können wir auch coden: arrays, objekte, schleifen usw benutzen
