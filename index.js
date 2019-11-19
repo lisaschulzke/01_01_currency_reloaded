@@ -38,17 +38,51 @@ if (args.length < 3) {
   amount = args[0];
   originalCurrency = args[1];
   targetCurrency = args[2];
-  
+
 }
 
 // Variablen definieren Umrechnungsfaktor
-let currencies = {USD: 1.11, GBP: 0.85, EUR: 1, SEK: 10.65, RUB: 70.55, CHF: 1.10, TRY: 6.33, JPY:120.39, NZD: 1.75}
+let currencies = {
+  USD: 
+    {value: 1.11,
+    symbol: ' $'},
+  GBP:
+    {value: 0.85,
+    symbol: ' £'},
+  EUR:
+    {value: 1,
+    symbol: ' €'},
+  SEK:
+    {value: 10.65,
+    symbol: ' SEK'},
+  RUB:
+    {value: 70.55,
+    symbol: ' руб'},
+  CHF:
+    {value: 1.10,
+    symbol: ' CHF'},
+  TRY:
+    {value: 6.33,
+    symbol: ' TL₺'},  
+  JPY:
+    {value: 120.39,
+    symbol: ' ¥'}, 
+  NZD:
+    {value: 1.75,
+    symbol: ' NZ$'}
+}
 
+    /*
+  values: {USD: 1.11, GBP: 0.85, EUR: 1, SEK: 10.65, RUB: 70.55, CHF: 1.10, TRY: 6.33, JPY: 120.39, NZD: 1.75},
+  symbols: {USD: '$', GBP: '£', EUR: '€', SEK: 'SEK', RUB: 'руб', CHF: 'CHF', TRY: 'TL₺', JPY: '¥', NZD: 'NZ$'}
+}
+*/
 //console.log(currencies.USD)
 
-console.log(((1/currencies[originalCurrency]) * currencies[targetCurrency])*amount)
+//console.log(((1 / currencies[originalCurrency]) * currencies[targetCurrency]) * amount)
 
+let output = (((1 / currencies[originalCurrency].value) * currencies[targetCurrency].value) * amount)
 
+//let outputSymbol = 
 
-//TODO: Code schreiben, dass er ausgeführt wird; Vorgehen: Comment-Coding
-//TODO: je nachdem können wir auch coden: arrays, objekte, schleifen usw benutzen
+console.log(amount + ' ' + args[1] + ' sind ' + output + currencies[targetCurrency].symbol)
