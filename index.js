@@ -30,6 +30,8 @@ let args = process.argv.slice(2);
 
 let amount, originalCurrency, targetCurrency;
 
+// arg für Argument --> richtet sich nach Wert den man eingibt an der Stelle in der eckigen Klammer
+
 if (args.length < 3) {
   console.log();
 } else {
@@ -39,17 +41,13 @@ if (args.length < 3) {
 }
 
 // Variablen definieren Umrechnungsfaktor
-const EUR = 1
-const USD = 1.11
-let calculation;
+let currencies = {USD: 1.11, GBP: 0.85, EUR: 1, SEK: 10.65, RUB: 70.55, CHF: 1.10, TRY: 6.33, JPY:120.39, NZD: 1.75}
 
-if (originalCurrency === 'USD' && targetCurrency === 'EUR') {
-  calculation = amount * USD * EUR
-  console.log(amount + ' ist in USD ' + calculation)
-} else if (originalCurrency === 'EUR' && targetCurrency === 'USD') {
-  calculation = amount / USD * EUR
-  console.log(amount + ' ist in EUR ' + calculation)
-}
+//console.log(currencies.USD)
+
+console.log(((1/currencies[originalCurrency]) * currencies[targetCurrency])*amount)
+
+
 
 //TODO: Code schreiben, dass er ausgeführt wird; Vorgehen: Comment-Coding
 //TODO: je nachdem können wir auch coden: arrays, objekte, schleifen usw benutzen
