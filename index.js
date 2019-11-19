@@ -38,6 +38,7 @@ if (args.length < 3) {
   amount = args[0];
   originalCurrency = args[1];
   targetCurrency = args[2];
+  
 }
 
 // Variablen definieren Umrechnungsfaktor
