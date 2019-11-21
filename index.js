@@ -26,6 +26,8 @@
  *  Das Script soll mindestens drei verschiedene Währungen in beide Richtungen unterstützen
  */
 
+
+
 let args = process.argv.slice(2);
 
 let amount, originalCurrency, targetCurrency;
@@ -86,3 +88,18 @@ let output = (((1 / currencies[originalCurrency].value) * currencies[targetCurre
 //let outputSymbol = 
 
 console.log(amount + ' ' + args[1] + ' sind ' + output + currencies[targetCurrency].symbol)
+
+
+const request = require('request');
+
+request('https://api.exchangeratesapi.io/latest', function (error, response, body) {
+  console.error('error:', error); // Print the error if one occurred
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the HTML for the Google homepage.
+  let bodyObj = JSON.parse(body);
+  //console.log(bodyObj);
+  for (let field in bodyObj.rates) {
+    console.log(field)
+    console.log(bodyObj.rates[field])
+  }
+});
