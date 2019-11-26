@@ -45,36 +45,45 @@ if (args.length < 3) {
 
 // Variablen definieren Umrechnungsfaktor
 let currencies = {
-  USD: 
-    {value: 1.11,
-    symbol: ' $'},
-  GBP:
-    {value: 0.85,
-    symbol: ' £'},
-  EUR:
-    {value: 1,
-    symbol: ' €'},
-  SEK:
-    {value: 10.65,
-    symbol: ' SEK'},
-  RUB:
-    {value: 70.55,
-    symbol: ' руб'},
-  CHF:
-    {value: 1.10,
-    symbol: ' CHF'},
-  TRY:
-    {value: 6.33,
-    symbol: ' TL₺'},  
-  JPY:
-    {value: 120.39,
-    symbol: ' ¥'}, 
-  NZD:
-    {value: 1.75,
-    symbol: ' NZ$'}
+  USD: {
+    value: 1.11,
+    symbol: ' $'
+  },
+  GBP: {
+    value: 0.85,
+    symbol: ' £'
+  },
+  EUR: {
+    value: 1,
+    symbol: ' €'
+  },
+  SEK: {
+    value: 10.65,
+    symbol: ' SEK'
+  },
+  RUB: {
+    value: 70.55,
+    symbol: ' руб'
+  },
+  CHF: {
+    value: 1.10,
+    symbol: ' CHF'
+  },
+  TRY: {
+    value: 6.33,
+    symbol: ' TL₺'
+  },
+  JPY: {
+    value: 120.39,
+    symbol: ' ¥'
+  },
+  NZD: {
+    value: 1.75,
+    symbol: ' NZ$'
+  }
 }
 
-    /*
+/*
   values: {USD: 1.11, GBP: 0.85, EUR: 1, SEK: 10.65, RUB: 70.55, CHF: 1.10, TRY: 6.33, JPY: 120.39, NZD: 1.75},
   symbols: {USD: '$', GBP: '£', EUR: '€', SEK: 'SEK', RUB: 'руб', CHF: 'CHF', TRY: 'TL₺', JPY: '¥', NZD: 'NZ$'}
 }
@@ -90,6 +99,7 @@ let output = (((1 / currencies[originalCurrency].value) * currencies[targetCurre
 console.log(amount + ' ' + args[1] + ' sind ' + output + currencies[targetCurrency].symbol)
 
 
+
 const request = require('request');
 
 request('https://api.exchangeratesapi.io/latest', function (error, response, body) {
@@ -99,7 +109,17 @@ request('https://api.exchangeratesapi.io/latest', function (error, response, bod
   let bodyObj = JSON.parse(body);
   //console.log(bodyObj);
   for (let field in bodyObj.rates) {
-    console.log(field)
-    console.log(bodyObj.rates[field])
+    //console.log(field)
+    //console.log(bodyObj.rates[field])  
+    if (currencies.hasOwnProperty(field) === true) {
+      currencies[field].value = bodyObj.rates[field];
+    } else if (currencies.hasOwnProperty(field) === false) {
+      currencies[field] = {};
+      currencies[field].value = bodyObj.rates[field];
+    }
+
+    console.log(field);
+    console.log(bodyObj.rates[field]);
+
   }
 });
